@@ -8,6 +8,7 @@
     "start": "next start",
     "type-check": "tsc --pretty --noEmit",
     "lint": "next lint",
+    "stylelint": "stylelint \"**/*.{css,scss}\"",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
     "prepare": "husky"
   },
@@ -27,6 +28,12 @@
     "eslint-plugin-prettier": "^5.5.1",
     "husky": "^9.1.7",
     "prettier": "^3.6.1",
+    "sass": "^1.89.2",
+    "stylelint": "^16.5.0",
+    "stylelint-config-syzygy-bem": "^2.3.0",
+    "stylelint-config-syzygy-order": "^2.2.6",
+    "stylelint-config-syzygy-scss": "^4.0.0",
+    "stylelint-scss": "^6.12.1",
     "typescript": "^5"
   }
 }
