@@ -19,7 +19,9 @@
     "lint": "next lint",
     "stylelint": "stylelint \"**/*.{css,scss}\"",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "next": "15.3.4",
@@ -28,6 +30,7 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@storybook/nextjs": "^9.0.13",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
@@ -35,9 +38,11 @@
     "eslint-config-next": "15.3.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.1",
+    "eslint-plugin-storybook": "^9.0.13",
     "husky": "^9.1.7",
     "prettier": "^3.6.1",
     "sass": "^1.89.2",
+    "storybook": "^9.0.13",
     "stylelint": "^16.5.0",
     "stylelint-config-syzygy-bem": "^2.3.0",
     "stylelint-config-syzygy-order": "^2.2.6",

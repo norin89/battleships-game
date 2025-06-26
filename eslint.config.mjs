@@ -1,6 +1,7 @@
 import { dirname } from 'path';
 import { fileURLToPath } from 'url';
 import { FlatCompat } from '@eslint/eslintrc';
+import storybook from 'eslint-plugin-storybook';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -12,7 +13,6 @@ const compat = new FlatCompat({
 const eslintConfig = [
 	...compat.config({
 		extends: ['next', 'next/core-web-vitals', 'next/typescript', 'plugin:jsx-a11y/recommended'],
-
 		plugins: ['prettier', 'jsx-a11y'],
 		rules: {
 			'no-console': 'warn',
@@ -22,6 +22,7 @@ const eslintConfig = [
 			'import/no-cycle': 'error',
 			'import/no-default-export': 'error',
 			'import/no-duplicates': ['error', { 'prefer-inline': true }],
+			'react/no-unescaped-entities': 'off',
 			'jsx-a11y/alt-text': 'warn',
 			'jsx-a11y/aria-props': 'warn',
 			'jsx-a11y/aria-proptypes': 'warn',
@@ -41,15 +42,23 @@ const eslintConfig = [
 				},
 			},
 			{
-				files: ['*.config.{?(m)js,?(m)ts}'],
+				files: ['*.config.{?(m)js,?(m)ts}', '.storybook/**'],
 				rules: {
 					'@typescript-eslint/no-var-requires': 'off',
 					'import/no-default-export': 'off',
 					'import/no-anonymous-default-export': 'off',
 				},
 			},
+			{
+				files: ['src/**/*.stories.ts?(x)', '.storybook/*.ts?(x)'],
+				rules: {
+					'import/no-default-export': 'off',
+					'@typescript-eslint/ban-ts-comment': 'off',
+				},
+			},
 		],
 	}),
+	...storybook.configs['flat/recommended'],
 ];
 
 export default eslintConfig;
