@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "type-check": "tsc --pretty --noEmit",
+    "lint": "next lint",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,md,mdx,css,yaml,yml}\"",
+    "prepare": "husky"
   },
   "dependencies": {
     "next": "15.3.4",
@@ -22,6 +25,7 @@
     "eslint-config-next": "15.3.4",
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-prettier": "^5.5.1",
+    "husky": "^9.1.7",
     "prettier": "^3.6.1",
     "typescript": "^5"
   }
