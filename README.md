@@ -1,4 +1,15 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Battleships Game
+
+## Requirements
+
+- [Node.js](https://nodejs.org/)@22
+- [npm](https://www.npmjs.com/)@10 (_installed with Node.js_)
+
+To install the dependencies, run:
+
+```
+npm install
+```
 
 ## Getting Started
 
@@ -6,31 +17,43 @@ First, run the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+To develop components in Storybook, run:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run storybook
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Game requirements
 
-## Learn More
+- [ ] a grid of cells (10x10)
+- [ ] the app places ships randomly
+  - [ ] ships are of different sizes (1x 5-cells, 2x 4-cells)
+- [ ] player can select a cell to attack
+  - [ ] by text input (e.g. "C3")
+  - [ ] by clicking on a cell in the grid
+  - [ ] the cell can be selected only once
+- [ ] results
+  - [ ] displayed on the grid: hits, misses, sunk ships
+  - [ ] info about left ships
+- [ ] the game ends when all ships are sunk
+  - [ ] there should be some message when the game ends
+  - [ ] button to restart the game
+- [ ] game instructions
 
-To learn more about Next.js, take a look at the following resources:
+### Possible enhancements
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [ ] difficulty levels with different ship count and sizes
+- [ ] computer opponent
+  - [ ] computer places the ships randomly
+  - [ ] computer selects cells to attack randomly
+    - [ ] some logic to select the next cell to attack
+- [ ] count and display the number of hits and misses
+  - [ ] store the top score
+  - [ ] display the top score
+- [ ] online multiplayer
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
