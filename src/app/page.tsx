@@ -1,4 +1,5 @@
 import { Board } from '@/componenta/molecules';
+import { generateShipPositions } from '@/utils/generateShipPositions';
 
 export default function Home() {
 	return (
@@ -13,7 +14,10 @@ export default function Home() {
 				}}
 			>
 				<h1>Welcome to the Battleships Game!</h1>
-				<Board style={{ width: '60vh', maxWidth: '100%', minWidth: 320 }} />
+				<Board
+					style={{ width: '60vh', maxWidth: '100%', minWidth: 320 }}
+					ships={generateShipPositions({ shipSizes: [5, 4, 4] })}
+				/>
 			</main>
 		</>
 	);
