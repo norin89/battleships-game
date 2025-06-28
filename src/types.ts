@@ -15,6 +15,7 @@ export type ShotType = {
 };
 
 export type BoardType = {
+	size: number;
 	ships: Array<
 		ShipType & {
 			position: PositionType;

@@ -20,12 +20,14 @@ type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
 	args: {
+		size: 10,
 		ships: [],
 	},
 };
 
 export const WithShips: Story = {
 	args: {
+		size: 10,
 		ships: [
 			{
 				size: 5,
@@ -63,6 +65,7 @@ export const WithShips: Story = {
 
 export const WithShots: Story = {
 	args: {
+		size: 10,
 		ships: [],
 		shots: [
 			{ position: { row: 1, column: 1 }, status: 'hit' },
@@ -80,6 +83,7 @@ export const WithShots: Story = {
 
 export const Combined: Story = {
 	args: {
+		size: 10,
 		ships: WithShips.args.ships.map((ship, idx) => ({
 			...ship,
 			// make last ship sunk for demo
