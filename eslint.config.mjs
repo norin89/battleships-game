@@ -50,6 +50,12 @@ const eslintConfig = [
 				},
 			},
 			{
+				files: ['src/components/**/*.ts?(x)'],
+				rules: {
+					'no-restricted-imports': ['error', '@/settings.json'],
+				},
+			},
+			{
 				files: ['src/**/*.stories.ts?(x)', '.storybook/*.ts?(x)'],
 				rules: {
 					'import/no-default-export': 'off',
