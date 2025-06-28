@@ -15,6 +15,10 @@ export const Game = ({
 			style={{ width: '60vh', maxWidth: '100%', minWidth: 320 }}
 			size={boardSize}
 			ships={ships}
+			onFieldClick={(position) => {
+				// eslint-disable no-console
+				console.log(position);
+			}}
 		/>
 		<form
 			onSubmit={(e) => {

@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/nextjs';
 
+import { fn } from 'storybook/test';
 import { Board } from './board';
 
 const meta = {
@@ -23,6 +24,10 @@ export const Empty: Story = {
 		size: 10,
 		ships: [],
 	},
+};
+
+export const Clickable: Story = {
+	args: { ...Empty.args, onFieldClick: fn() },
 };
 
 export const WithShips: Story = {

@@ -1,15 +1,17 @@
-import { Fragment, HTMLAttributes } from 'react';
+import { ButtonHTMLAttributes, Fragment, HTMLAttributes } from 'react';
 import cx from 'clsx';
 
 import s from './board.module.scss';
 import { numberIndexToAlphanumeric } from '@/utils/numberIndexToAlphanumeric';
 import { Ship, Shot } from '@/components/atoms';
-import { BoardType } from '@/types';
+import { BoardType, PositionType } from '@/types';
 
-export type BoardProps = BoardType & HTMLAttributes<HTMLDivElement>;
+export type BoardProps = BoardType & {
+	onFieldClick?: (position: PositionType) => void;
+} & HTMLAttributes<HTMLDivElement>;
 
 /** Battleships game board */
-export const Board = ({ size, ships, shots, className, ...props }: BoardProps) => {
+export const Board = ({ size, ships, shots, onFieldClick, className, ...props }: BoardProps) => {
 	const renderedBoardSize = size + 1; // +1 for the row and column header
 
 	return (
@@ -22,16 +24,31 @@ export const Board = ({ size, ships, shots, className, ...props }: BoardProps) =
 								const isHeader = rowIdx === 0 || columnIdx === 0;
 								const columnLetter = columnIdx > 0 ? numberIndexToAlphanumeric(columnIdx - 1) : '';
 								const fieldIdx = `${columnLetter}${rowIdx}`;
+								const isClickable = !isHeader && onFieldClick;
+								const Component = isClickable ? 'button' : 'span';
+
+								const clickableFieldProps: ButtonHTMLAttributes<HTMLButtonElement> = {
+									type: 'button',
+									tabIndex: -1,
+									onClick: () => {
+										onFieldClick?.({
+											column: columnIdx,
+											row: rowIdx,
+										});
+									},
+								};
 
 								return (
-									<div
+									<Component
 										key={fieldIdx}
 										className={cx(s['board__field'], {
 											[s['board__field--header']]: isHeader,
+											[s['board__field--clickable']]: isClickable,
 										})}
+										{...(isClickable ? clickableFieldProps : {})}
 									>
 										{isHeader ? (rowIdx === 0 ? columnLetter : rowIdx) : ''}
-									</div>
+									</Component>
 								);
 							})}
 						</Fragment>
