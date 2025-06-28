@@ -1,5 +1,12 @@
 {
   "board-size": 10,
   "ship-size-min": 1,
-  "ship-size-max": 5
+  "ship-size-max": 5,
+  "ships-on-board": {
+    "5": 1,
+    "4": 2,
+    "3": 1,
+    "2": 1,
+    "1": 2
+  }
 }

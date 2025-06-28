@@ -2,14 +2,23 @@ import type { NextConfig } from 'next';
 import settings from '@/settings.json';
 
 // Variables from `settings.json` converted to Sass variables
-const additionalSassData = `${Object.entries(settings)
-	.map(([key, value]) => `$${key}: ${value};`)
-	.join('\n')}`;
+const createSassVariables = (data: object, prefix = ''): string =>
+	`${Object.entries(data)
+		.reduce(
+			(result: string[], [key, value]) => [
+				...result,
+				typeof value === 'object'
+					? createSassVariables(value, `${key}-`)
+					: `$${prefix}${key}: ${value};`,
+			],
+			[],
+		)
+		.join('\n')}`;
 
 const nextConfig: NextConfig = {
 	sassOptions: {
 		implementation: 'sass',
-		additionalData: additionalSassData,
+		additionalData: createSassVariables(settings),
 	},
 };
 
