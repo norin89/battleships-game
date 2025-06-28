@@ -1,0 +1,21 @@
+.ship {
+	$root: &;
+	display: inline-flex;
+	min-height: 1em;
+	min-width: 1em;
+	background: #666;
+	border-radius: 25%;
+
+	// todo: get max size from `settings.json`
+	@each $size in (1, 2, 3, 4, 5) {
+		/* stylelint-disable plugin/selector-bem-pattern */
+		&--size-#{$size} {
+			aspect-ratio: #{$size} / 1;
+
+			&#{$root}--vertical {
+				aspect-ratio: 1 / #{$size};
+			}
+		}
+		/* stylelint-enable plugin/selector-bem-pattern */
+	}
+}
