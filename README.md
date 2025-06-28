@@ -27,7 +27,7 @@ npm run storybook
 
 ## Game requirements
 
-- [ ] a grid of cells (10x10)
+- [x] a grid of cells (10x10)
 - [ ] the app places ships randomly
   - [ ] ships are of different sizes (1x 5-cells, 2x 4-cells)
 - [ ] player can select a cell to attack

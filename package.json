@@ -41,6 +41,7 @@
     "eslint-plugin-prettier": "^5.5.1",
     "eslint-plugin-storybook": "^9.0.13",
     "husky": "^9.1.7",
+    "node-sass-json-importer": "^4.3.0",
     "prettier": "^3.6.1",
     "sass": "^1.89.2",
     "storybook": "^9.0.13",

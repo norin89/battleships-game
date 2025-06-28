@@ -2,7 +2,6 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 
 import { Board } from './board';
 
-// More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
 	title: 'Organisms / Board',
 	component: Board,
