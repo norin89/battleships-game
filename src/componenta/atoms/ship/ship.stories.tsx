@@ -32,6 +32,14 @@ export const Vertical: Story = {
 	},
 };
 
+export const Sunk: Story = {
+	args: {
+		size: 4,
+		orientation: 'horizontal',
+		isSunk: true,
+	},
+};
+
 export const Size4: Story = {
 	args: {
 		size: 4,

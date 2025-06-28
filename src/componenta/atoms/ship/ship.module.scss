@@ -13,6 +13,10 @@ $scale-factor: 0.9;
 	background: #bfb7b7;
 	border-radius: 25%;
 
+	&.-is-sunk {
+		background: #ed8b8b;
+	}
+
 	@for $size from vars.$ship-size-min through vars.$ship-size-max {
 		/* stylelint-disable plugin/selector-bem-pattern */
 		&--size-#{$size} {

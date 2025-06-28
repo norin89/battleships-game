@@ -8,9 +8,16 @@ export type ShipProps = HTMLAttributes<HTMLSpanElement> & {
 	// todo: generic type for number range
 	size: number;
 	orientation?: 'horizontal' | 'vertical';
+	isSunk?: boolean;
 };
 
-export const Ship = ({ size, orientation = 'horizontal', className, ...props }: ShipProps) => {
+export const Ship = ({
+	size,
+	orientation = 'horizontal',
+	isSunk,
+	className,
+	...props
+}: ShipProps) => {
 	if (size < settings['ship-size-min'] || size > settings['ship-size-max']) {
 		throw new Error(
 			`Ship size must be between ${settings['ship-size-min']} and ${settings['ship-size-max']}`,
@@ -23,6 +30,7 @@ export const Ship = ({ size, orientation = 'horizontal', className, ...props }: 
 				s['ship'],
 				s[`ship--size-${size}`],
 				{
+					[s['-is-sunk']]: isSunk,
 					[s['ship--horizontal']]: orientation === 'horizontal',
 					[s['ship--vertical']]: orientation === 'vertical',
 				},

@@ -27,33 +27,33 @@ export const WithShips: Story = {
 		ships: [
 			{
 				size: 5,
-				orientation: 'horizontal',
 				position: { column: 2, row: 4 },
-			},
-			{
-				size: 4,
-				position: { row: 2, column: 5 },
 				orientation: 'horizontal',
 			},
 			{
 				size: 4,
-				position: { row: 7, column: 7 },
+				orientation: 'horizontal',
+				position: { row: 2, column: 5 },
+			},
+			{
+				size: 4,
 				orientation: 'vertical',
+				position: { row: 7, column: 7 },
 			},
 			{
 				size: 3,
-				position: { row: 8, column: 1 },
 				orientation: 'horizontal',
+				position: { row: 8, column: 1 },
 			},
 			{
 				size: 2,
+				orientation: 'vertical',
 				position: { row: 1, column: 1 },
-				orientation: 'horizontal',
 			},
 			{
 				size: 1,
-				position: { row: 6, column: 10 },
 				orientation: 'horizontal',
+				position: { row: 6, column: 10 },
 			},
 		],
 	},
@@ -70,13 +70,18 @@ export const WithShots: Story = {
 			{ position: { row: 8, column: 4 }, status: 'miss' },
 			{ position: { row: 6, column: 10 }, status: 'hit' },
 			{ position: { row: 9, column: 9 }, status: 'miss' },
+			{ position: { row: 1, column: 8 }, status: 'miss' },
 		],
 	},
 };
 
 export const Combined: Story = {
 	args: {
-		...WithShips.args,
+		ships: WithShips.args!.ships!.map((ship, idx) => ({
+			...ship,
+			// make last ship sunk for demo
+			isSunk: idx + 1 === WithShips.args!.ships!.length,
+		})),
 		...WithShots.args,
 	},
 };

@@ -53,40 +53,43 @@ export const Board = ({ ships, shots, className, ...props }: BoardProps) => (
 				))}
 			</div>
 			<div className={s['board__layer']}>
-				{ships?.map((ship, idx) => (
-					<Ship
-						className={s['board__ship']}
-						size={ship.size}
-						orientation={ship.orientation}
-						key={idx}
-						style={{
-							// +1 because of headers
-							gridColumnStart: ship.position.column + 1,
-							gridColumnEnd:
-								ship.orientation === 'horizontal'
-									? ship.size + ship.position.column + 1
-									: undefined,
-							gridRowStart: ship.position.row + 1,
-							gridRowEnd:
-								ship.orientation === 'vertical' ? ship.size + ship.position.row + 1 : undefined,
-						}}
-					/>
-				))}
+				{ships?.map((ship, idx) => {
+					const { position, ...rest } = ship;
+					return (
+						<Ship
+							className={s['board__ship']}
+							{...rest}
+							style={{
+								// +1 because of headers
+								gridColumnStart: position.column + 1,
+								gridColumnEnd:
+									ship.orientation === 'horizontal' ? ship.size + position.column + 1 : undefined,
+								gridRowStart: ship.position.row + 1,
+								gridRowEnd:
+									ship.orientation === 'vertical' ? ship.size + ship.position.row + 1 : undefined,
+							}}
+							key={idx}
+						/>
+					);
+				})}
 			</div>
 			{shots && (
 				<div className={s['board__layer']}>
-					{shots?.map((shot, idx) => (
-						<Shot
-							className={s['board__shot']}
-							key={idx}
-							style={{
-								// +1 because of headers
-								gridColumnStart: shot.position.column + 1,
-								gridRowStart: shot.position.row + 1,
-							}}
-							status={shot.status}
-						/>
-					))}
+					{shots?.map((shot, idx) => {
+						const { position, ...rest } = shot;
+						return (
+							<Shot
+								className={s['board__shot']}
+								{...rest}
+								style={{
+									// +1 because of headers
+									gridColumnStart: position.column + 1,
+									gridRowStart: position.row + 1,
+								}}
+								key={idx}
+							/>
+						);
+					})}
 				</div>
 			)}
 		</div>
