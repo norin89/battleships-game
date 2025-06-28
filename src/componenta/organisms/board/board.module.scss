@@ -1,0 +1,23 @@
+// todo: in-sync with `board.tsx`, should be moved to "single source of truth"
+$size: 10;
+$rendered-size: $size + 1; // space for the row and column header
+
+.board {
+	display: grid;
+	grid-template-columns: repeat($rendered-size, 1fr);
+	grid-template-rows: repeat($rendered-size, 1fr);
+	height: 80vh;
+	aspect-ratio: 1;
+
+	&__field {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		border-right: 1px dashed #6495ed;
+		border-bottom: 1px dashed #6495ed;
+
+		&--header {
+			color: #c54e4e;
+		}
+	}
+}
