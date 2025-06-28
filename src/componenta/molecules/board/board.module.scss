@@ -31,4 +31,8 @@ $rendered-board-size: vars.$board-size + 1; // space for the row and column head
 			color: #c54e4e;
 		}
 	}
+
+	&__shot {
+		transform: scale(0.5);
+	}
 }

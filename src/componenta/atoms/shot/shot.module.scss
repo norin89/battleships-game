@@ -1,0 +1,18 @@
+@use '../../../styles/vars';
+
+.shot {
+	$root: &;
+	display: inline-block;
+	min-height: 1em;
+	min-width: 1em;
+	border-radius: 50%;
+	background: #ccc;
+
+	&--hit {
+		background: #df5151;
+	}
+
+	&--miss {
+		background: #6bc6e3;
+	}
+}

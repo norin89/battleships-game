@@ -58,3 +58,25 @@ export const WithShips: Story = {
 		],
 	},
 };
+
+export const WithShots: Story = {
+	args: {
+		shots: [
+			{ position: { row: 1, column: 1 }, status: 'hit' },
+			{ position: { row: 1, column: 2 }, status: 'miss' },
+			{ position: { row: 2, column: 9 }, status: 'miss' },
+			{ position: { row: 4, column: 6 }, status: 'hit' },
+			{ position: { row: 7, column: 7 }, status: 'hit' },
+			{ position: { row: 8, column: 4 }, status: 'miss' },
+			{ position: { row: 6, column: 10 }, status: 'hit' },
+			{ position: { row: 9, column: 9 }, status: 'miss' },
+		],
+	},
+};
+
+export const Combined: Story = {
+	args: {
+		...WithShips.args,
+		...WithShots.args,
+	},
+};

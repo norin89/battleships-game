@@ -4,23 +4,30 @@ import cx from 'clsx';
 import s from './board.module.scss';
 import { numberIndexToAlphanumeric } from '@/utils/numberIndexToAlphanumeric';
 import settings from '@/settings.json';
-import { Ship, ShipProps } from '@/componenta/atoms';
+import { Ship, ShipProps, Shot, ShotProps } from '@/componenta/atoms';
 
 const RENDERED_BOARD_SIZE = settings['board-size'] + 1; // add space for the row and column header
+
+type Position = {
+	row: number;
+	column: number;
+};
 
 export type BoardProps = HTMLAttributes<HTMLDivElement> & {
 	ships?: Array<
 		ShipProps & {
-			position: {
-				row: number;
-				column: number;
-			};
+			position: Position;
+		}
+	>;
+	shots?: Array<
+		ShotProps & {
+			position: Position;
 		}
 	>;
 };
 
 /** Battleships game board */
-export const Board = ({ ships, className, ...props }: BoardProps) => (
+export const Board = ({ ships, shots, className, ...props }: BoardProps) => (
 	<div className={cx(s['board'], className)} {...props}>
 		<div className={s['board__canvas']}>
 			<div className={cx(s['board__layer'], s['board__layer'])}>
@@ -66,6 +73,22 @@ export const Board = ({ ships, className, ...props }: BoardProps) => (
 					/>
 				))}
 			</div>
+			{shots && (
+				<div className={s['board__layer']}>
+					{shots?.map((shot, idx) => (
+						<Shot
+							className={s['board__shot']}
+							key={idx}
+							style={{
+								// +1 because of headers
+								gridColumnStart: shot.position.column + 1,
+								gridRowStart: shot.position.row + 1,
+							}}
+							status={shot.status}
+						/>
+					))}
+				</div>
+			)}
 		</div>
 	</div>
 );
