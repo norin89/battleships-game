@@ -25,6 +25,15 @@ To develop components in Storybook, run:
 npm run storybook
 ```
 
+### Settings
+
+Game settings are stored in `src/settings.json`.
+
+> **Important:**
+> After any change, development / Storybook server needs to be restarted to apply styles changes.
+
+---
+
 ## Game requirements
 
 - [x] a grid of cells (10x10)

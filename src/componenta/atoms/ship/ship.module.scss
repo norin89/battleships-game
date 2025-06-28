@@ -1,5 +1,8 @@
 @use 'sass:math';
-@use '../../../styles/vars';
+
+// defaults for values from `settings.json`
+$ship-size-min: 1 !default;
+$ship-size-max: 5 !default;
 
 $scale-factor: 0.9;
 
@@ -17,7 +20,7 @@ $scale-factor: 0.9;
 		background: #ed8b8b;
 	}
 
-	@for $size from vars.$ship-size-min through vars.$ship-size-max {
+	@for $size from $ship-size-min through $ship-size-max {
 		/* stylelint-disable plugin/selector-bem-pattern */
 		&--size-#{$size} {
 			&::before {

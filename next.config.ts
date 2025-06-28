@@ -1,10 +1,15 @@
 import type { NextConfig } from 'next';
-// @ts-expect-error: no types available
-import sassJsonImporter from 'node-sass-json-importer';
+import settings from '@/settings.json';
+
+// Variables from `settings.json` converted to Sass variables
+const additionalSassData = `${Object.entries(settings)
+	.map(([key, value]) => `$${key}: ${value};`)
+	.join('\n')}`;
 
 const nextConfig: NextConfig = {
 	sassOptions: {
-		importer: sassJsonImporter(),
+		implementation: 'sass',
+		additionalData: additionalSassData,
 	},
 };
 

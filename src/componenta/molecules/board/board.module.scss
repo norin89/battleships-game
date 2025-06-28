@@ -1,6 +1,7 @@
-@use '../../../styles/vars';
+// defaults for values from `settings.json`
+$board-size: 10 !default;
 
-$rendered-board-size: vars.$board-size + 1; // space for the row and column header
+$rendered-board-size: $board-size + 1; // space for the row and column header
 
 .board {
 	display: block;
