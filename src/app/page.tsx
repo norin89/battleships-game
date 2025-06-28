@@ -1,4 +1,4 @@
-import { Board } from '@/componenta/molecules';
+import { Board } from '@/components/molecules';
 import { generateShipPositions } from '@/utils/generateShipPositions';
 
 export default function Home() {

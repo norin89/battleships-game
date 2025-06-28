@@ -4,27 +4,12 @@ import cx from 'clsx';
 import s from './board.module.scss';
 import { numberIndexToAlphanumeric } from '@/utils/numberIndexToAlphanumeric';
 import settings from '@/settings.json';
-import { Ship, ShipProps, Shot, ShotProps } from '@/componenta/atoms';
+import { Ship, Shot } from '@/components/atoms';
+import { BoardType } from '@/types';
 
 const RENDERED_BOARD_SIZE = settings['board-size'] + 1; // add space for the row and column header
 
-type Position = {
-	row: number;
-	column: number;
-};
-
-export type BoardProps = HTMLAttributes<HTMLDivElement> & {
-	ships?: Array<
-		ShipProps & {
-			position: Position;
-		}
-	>;
-	shots?: Array<
-		ShotProps & {
-			position: Position;
-		}
-	>;
-};
+export type BoardProps = BoardType & HTMLAttributes<HTMLDivElement>;
 
 /** Battleships game board */
 export const Board = ({ ships, shots, className, ...props }: BoardProps) => (
