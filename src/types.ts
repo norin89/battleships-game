@@ -5,7 +5,7 @@ export type ShipType = {
 	isSunk?: boolean;
 };
 
-type PositionType = {
+export type PositionType = {
 	row: number;
 	column: number;
 };
