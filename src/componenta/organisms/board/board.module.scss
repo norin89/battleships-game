@@ -3,11 +3,22 @@
 $rendered-board-size: vars.$board-size + 1; // space for the row and column header
 
 .board {
-	display: grid;
-	grid-template-columns: repeat($rendered-board-size, 1fr);
-	grid-template-rows: repeat($rendered-board-size, 1fr);
-	height: 80vh;
-	aspect-ratio: 1;
+	position: relative;
+	display: block;
+
+	&__layer {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		grid-template-columns: repeat($rendered-board-size, 1fr);
+		grid-template-rows: repeat($rendered-board-size, 1fr);
+		height: 80vh;
+		aspect-ratio: 1;
+
+		&--base {
+			position: static;
+		}
+	}
 
 	&__field {
 		display: flex;

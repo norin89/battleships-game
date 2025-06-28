@@ -13,16 +13,18 @@
 	@for $size from vars.$ship-size-min through vars.$ship-size-max {
 		/* stylelint-disable plugin/selector-bem-pattern */
 		&--size-#{$size} {
-			aspect-ratio: #{$size} / 1;
-
 			&::before {
 				content: '#{$size}';
 				color: rgba(#fff, .5);
 				font-size: .75em;;
 			}
 
+			&#{$root}--horizontal {
+				min-width: $size * 1em;
+			}
+
 			&#{$root}--vertical {
-				aspect-ratio: 1 / #{$size};
+				min-height: $size * 1em;
 			}
 		}
 		/* stylelint-enable plugin/selector-bem-pattern */

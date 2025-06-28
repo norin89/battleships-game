@@ -29,7 +29,7 @@ npm run storybook
 
 - [x] a grid of cells (10x10)
 - [ ] the app places ships randomly
-  - [ ] ships are of different sizes (1x 5-cells, 2x 4-cells)
+  - [x] ships are of different sizes (1x 5-cells, 2x 4-cells)
 - [ ] player can select a cell to attack
   - [ ] by text input (e.g. "C3")
   - [ ] by clicking on a cell in the grid
