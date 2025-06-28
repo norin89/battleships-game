@@ -19,7 +19,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Empty: Story = {
-	args: {},
+	args: {
+		ships: [],
+	},
 };
 
 export const WithShips: Story = {
@@ -61,6 +63,7 @@ export const WithShips: Story = {
 
 export const WithShots: Story = {
 	args: {
+		ships: [],
 		shots: [
 			{ position: { row: 1, column: 1 }, status: 'hit' },
 			{ position: { row: 1, column: 2 }, status: 'miss' },
@@ -77,11 +80,11 @@ export const WithShots: Story = {
 
 export const Combined: Story = {
 	args: {
-		ships: WithShips.args!.ships!.map((ship, idx) => ({
+		ships: WithShips.args.ships.map((ship, idx) => ({
 			...ship,
 			// make last ship sunk for demo
 			isSunk: idx + 1 === WithShips.args!.ships!.length,
 		})),
-		...WithShots.args,
+		shots: WithShots.args.shots,
 	},
 };
