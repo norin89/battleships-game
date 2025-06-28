@@ -6,6 +6,13 @@ const meta = {
 	title: 'Atoms / Ship',
 	component: Ship,
 	tags: ['autodocs'],
+	decorators: [
+		(Story) => (
+			<div style={{ fontSize: '30px' }}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta<typeof Ship>;
 
 export default meta;

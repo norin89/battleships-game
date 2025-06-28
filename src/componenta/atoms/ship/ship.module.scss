@@ -1,4 +1,7 @@
+@use 'sass:math';
 @use '../../../styles/vars';
+
+$scale-factor: 0.9;
 
 .ship {
 	$root: &;
@@ -7,7 +10,7 @@
 	justify-content: center;
 	min-height: 1em;
 	min-width: 1em;
-	background: #666;
+	background: #bfb7b7;
 	border-radius: 25%;
 
 	@for $size from vars.$ship-size-min through vars.$ship-size-max {
@@ -21,10 +24,12 @@
 
 			&#{$root}--horizontal {
 				min-width: $size * 1em;
+				transform: scale(1 - (math.div(1 - $scale-factor, $size)), $scale-factor);
 			}
 
 			&#{$root}--vertical {
 				min-height: $size * 1em;
+				transform: scale($scale-factor, 1 - (math.div(1 - $scale-factor, $size)));
 			}
 		}
 		/* stylelint-enable plugin/selector-bem-pattern */

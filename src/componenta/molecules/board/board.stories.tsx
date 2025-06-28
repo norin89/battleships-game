@@ -3,9 +3,16 @@ import type { Meta, StoryObj } from '@storybook/nextjs';
 import { Board } from './board';
 
 const meta = {
-	title: 'Organisms / Board',
+	title: 'Molecules / Board',
 	component: Board,
 	tags: ['autodocs'],
+	decorators: [
+		(Story) => (
+			<div style={{ maxWidth: 480 }}>
+				<Story />
+			</div>
+		),
+	],
 } satisfies Meta<typeof Board>;
 
 export default meta;

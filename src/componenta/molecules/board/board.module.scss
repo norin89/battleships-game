@@ -3,8 +3,12 @@
 $rendered-board-size: vars.$board-size + 1; // space for the row and column header
 
 .board {
-	position: relative;
 	display: block;
+
+	&__canvas {
+		position: relative;
+		aspect-ratio: 1;
+	}
 
 	&__layer {
 		position: absolute;
@@ -12,20 +16,16 @@ $rendered-board-size: vars.$board-size + 1; // space for the row and column head
 		display: grid;
 		grid-template-columns: repeat($rendered-board-size, 1fr);
 		grid-template-rows: repeat($rendered-board-size, 1fr);
-		height: 80vh;
-		aspect-ratio: 1;
-
-		&--base {
-			position: static;
-		}
 	}
 
 	&__field {
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		border-right: 1px dashed #6495ed;
+		min-height: 1em;
+		min-width: 1em;
 		border-bottom: 1px dashed #6495ed;
+		border-right: 1px dashed #6495ed;
 
 		&--header {
 			color: #c54e4e;
