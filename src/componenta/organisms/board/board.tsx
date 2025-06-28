@@ -12,9 +12,9 @@ export type BoardProps = HTMLAttributes<HTMLDivElement>;
 /** Battleships game board */
 export const Board = ({ className, ...props }: BoardProps) => (
 	<div className={cx(s['board'], className)} {...props}>
-		{Array.from({ length: RENDERED_BOARD_SIZE }, (_row, rowIdx) => (
+		{Array.from(Array(RENDERED_BOARD_SIZE), (_row, rowIdx) => (
 			<Fragment key={rowIdx}>
-				{Array.from({ length: RENDERED_BOARD_SIZE }, (_column, columnIdx) => {
+				{Array.from(Array(RENDERED_BOARD_SIZE), (_column, columnIdx) => {
 					const isHeader = rowIdx === 0 || columnIdx === 0;
 					const columnLetter = columnIdx > 0 ? numberIndexToAlphanumeric(columnIdx - 1) : '';
 					const fieldIdx = `${columnLetter}${rowIdx}`;
