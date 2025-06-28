@@ -46,7 +46,7 @@ const findPositionForShip = ({
 
 	if (isShipInCollision({ ship, ships })) {
 		// eslint-disable-next-line no-console
-		console.warn("New ship can't be placed due to collision - finding new position.");
+		console.info("New ship can't be placed due to collision - finding new position.");
 		ship = findPositionForShip({ size, ships });
 	}
 

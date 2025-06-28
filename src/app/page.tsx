@@ -2,13 +2,16 @@ import { Board } from '@/components/molecules';
 import { generateShipPositions } from '@/utils/generateShipPositions';
 import settings from '@/settings.json';
 
-const SHIP_SIZES = Object.entries(settings['ships-on-board']).reduce(
-	(result: number[], [size, count]) => [
-		...result,
-		...Array.from(Array(count), () => parseInt(size)),
-	],
-	[],
-);
+const SHIP_SIZES = Object.entries(settings['ships-on-board'])
+	.reduce(
+		(result: number[], [size, count]) => [
+			...result,
+			...Array.from(Array(count), () => parseInt(size)),
+		],
+		[],
+	)
+	// Sort from largest to smallest for easier placement
+	.sort((a, b) => b - a);
 
 export default function Home() {
 	return (
