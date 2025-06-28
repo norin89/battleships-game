@@ -30,7 +30,7 @@ export type BoardProps = HTMLAttributes<HTMLDivElement> & {
 export const Board = ({ ships, shots, className, ...props }: BoardProps) => (
 	<div className={cx(s['board'], className)} {...props}>
 		<div className={s['board__canvas']}>
-			<div className={cx(s['board__layer'], s['board__layer'])}>
+			<div className={cx(s['board__layer'], s['board__layer--base'])}>
 				{Array.from(Array(RENDERED_BOARD_SIZE), (_row, rowIdx) => (
 					<Fragment key={rowIdx}>
 						{Array.from(Array(RENDERED_BOARD_SIZE), (_column, columnIdx) => {
