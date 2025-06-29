@@ -97,3 +97,15 @@ export const Combined: Story = {
 		shots: WithShots.args.shots,
 	},
 };
+
+export const WithNotification: Story = {
+	args: {
+		...Combined.args,
+		notifications: [
+			{
+				message: 'Invalid position!',
+				status: 'error',
+			},
+		],
+	},
+};

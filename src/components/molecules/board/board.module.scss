@@ -4,6 +4,7 @@ $board-size: 10 !default;
 $rendered-board-size: $board-size + 1; // space for the row and column header
 
 .board {
+	position: relative;
 	display: block;
 
 	&__canvas {
@@ -56,5 +57,17 @@ $rendered-board-size: $board-size + 1; // space for the row and column header
 
 	&__shot {
 		transform: scale(0.5);
+	}
+
+	&__notifications {
+		position: absolute;
+		inset: 0;
+		z-index: 9;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		background: rgba(#fff, 0.5);
 	}
 }

@@ -2,16 +2,25 @@ import { ButtonHTMLAttributes, Fragment, HTMLAttributes } from 'react';
 import cx from 'clsx';
 
 import s from './board.module.scss';
+import { BoardType, PositionType } from '@/types';
 import { numberIndexToAlphanumeric } from '@/utils/convertIndex';
 import { Ship, Shot } from '@/components/atoms';
-import { BoardType, PositionType } from '@/types';
+import { Notification } from '@/components/molecules/notification/notification';
 
 export type BoardProps = BoardType & {
 	onFieldClick?: (position: PositionType) => void;
 } & HTMLAttributes<HTMLDivElement>;
 
 /** Battleships game board */
-export const Board = ({ size, ships, shots, onFieldClick, className, ...props }: BoardProps) => {
+export const Board = ({
+	size,
+	ships,
+	shots = [],
+	notifications = [],
+	onFieldClick,
+	className,
+	...props
+}: BoardProps) => {
 	const renderedBoardSize = size + 1; // +1 for the row and column header
 
 	return (
@@ -75,7 +84,7 @@ export const Board = ({ size, ships, shots, onFieldClick, className, ...props }:
 						);
 					})}
 				</div>
-				{shots && (
+				{shots.length ? (
 					<div className={s['board__layer']}>
 						{shots?.map((shot, idx) => {
 							const { position, ...rest } = shot;
@@ -93,8 +102,20 @@ export const Board = ({ size, ships, shots, onFieldClick, className, ...props }:
 							);
 						})}
 					</div>
-				)}
+				) : null}
 			</div>
+			{notifications.length ? (
+				<div className={s['board__notifications']}>
+					{notifications.map((notification, idx) => {
+						const { message, ...props } = notification;
+						return (
+							<Notification className={s['board__notification']} {...props} key={idx}>
+								{message}
+							</Notification>
+						);
+					})}
+				</div>
+			) : null}
 		</div>
 	);
 };

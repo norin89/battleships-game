@@ -1,3 +1,5 @@
+import { ReactNode } from 'react';
+
 export type ShipType = {
 	// todo: generic type for number range
 	size: number;
@@ -26,6 +28,11 @@ export type BoardType = {
 			position: PositionType;
 		}
 	>;
+	notifications?: Array<{
+		message: ReactNode;
+		status?: ValidationStatusType;
+		onClose?: () => void;
+	}>;
 };
 
 export type ValidationStatusType = 'error' | 'success' | 'warning' | 'info';
