@@ -27,3 +27,5 @@ export type BoardType = {
 		}
 	>;
 };
+
+export type ValidationStatusType = 'error' | 'success' | 'warning' | 'info';

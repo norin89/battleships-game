@@ -25,8 +25,8 @@ $scale-factor: 0.9;
 		&--size-#{$size} {
 			&::before {
 				content: '#{$size}';
-				color: rgba(#fff, .5);
-				font-size: .75em;;
+				color: rgba(#fff, 0.5);
+				font-size: 0.75em;
 			}
 
 			&#{$root}--horizontal {

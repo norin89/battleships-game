@@ -1,0 +1,61 @@
+@use 'sass:color';
+$max-width: 320px;
+
+$validation-status-colors: (
+	'error': (
+		background: #f6a6a6,
+		color: color.mix(#f6a6a6, #000, 30%),
+	),
+	'warning': (
+		background: #f8c277,
+		color: color.mix(#f8c277, #000, 30%),
+	),
+	'success': (
+		background: #87d687,
+		color: color.mix(#87d687, #000, 30%),
+	),
+	'info': (
+		background: #a0d8f1,
+		color: color.mix(#a0d8f1, #000, 30%),
+	),
+);
+
+.notification {
+	position: relative;
+	box-sizing: border-box;
+	display: block;
+	min-width: min-content;
+	max-width: $max-width;
+	padding: 20px;
+	background: #ebebeb;
+	color: #222;
+	text-align: center;
+
+	&__close {
+		position: absolute;
+		top: 0;
+		right: 0;
+		padding: 10px;
+		border: 0;
+		background: none;
+		font-size: 20px;
+		line-height: 1;
+		opacity: 0.5;
+		transition: opacity 0.5s;
+		cursor: pointer;
+		appearance: none;
+
+		&:hover,
+		&:focus {
+			opacity: 1;
+		}
+	}
+
+	@each $status, $props in $validation-status-colors {
+		&--status-#{$status} {
+			@each $property, $value in $props {
+				#{$property}: $value;
+			}
+		}
+	}
+}

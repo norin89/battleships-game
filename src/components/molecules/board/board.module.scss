@@ -34,13 +34,13 @@ $rendered-board-size: $board-size + 1; // space for the row and column header
 		min-height: 1em;
 		min-width: 1em;
 		border: 0 dashed #6495ed;
-		border-width:  0 1px 1px 0;
+		border-width: 0 1px 1px 0;
 		background: none;
 		color: inherit;
 		font: inherit;
 
 		&--clickable {
-			transition: background .25s;
+			transition: background 0.25s;
 			cursor: pointer;
 
 			&:hover {
