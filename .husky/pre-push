@@ -1,1 +1,1 @@
-npm run type-check && npm run lint && npm run stylelint
+npm run type-check && npm run test && npm run lint && npm run stylelint

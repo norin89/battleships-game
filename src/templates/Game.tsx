@@ -7,6 +7,7 @@ import { Board } from '@/components/molecules';
 import { BoardType, PositionType } from '@/types';
 import { hasShotHit } from '@/utils/hasShotHit';
 import { updateShipsAfterHit } from '@/utils/updateShipsAfterHit';
+import { alphanumericIndexToNumber } from '@/utils/convertIndex';
 
 export const Game = ({
 	boardSize,
@@ -20,6 +21,7 @@ export const Game = ({
 	// todo: consider using a Redux for better state management when the game grows
 	const [ships, setShips] = useState<BoardType['ships']>(boardShips);
 	const [shots, setShots] = useState<BoardType['shots']>([]);
+	const [input, setInput] = useState<string>('');
 
 	const handleShot = (position: PositionType) => {
 		const isAlreadyShot = shots?.find(
@@ -70,7 +72,29 @@ export const Game = ({
 				}}
 			>
 				{/* todo: decode to `PositionType` and fire shot on submit */}
-				<input type="text" placeholder="e.g. E3" />
+				<input
+					type="text"
+					value={input}
+					onChange={(e) => {
+						// Clean-up input value
+						const value = e.target.value.trim();
+
+						setInput(value);
+
+						if (!value) {
+							return;
+						}
+
+						const position: PositionType = {
+							column: alphanumericIndexToNumber(value.toLowerCase()),
+							row: 0,
+						};
+
+						// eslint-disable-next-line no-console
+						console.log(position);
+					}}
+					placeholder="e.g. E3"
+				/>
 				<button type="submit">Hit!</button>
 				&nbsp;&nbsp;&nbsp;
 				<button

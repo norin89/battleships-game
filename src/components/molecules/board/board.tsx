@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, Fragment, HTMLAttributes } from 'react';
 import cx from 'clsx';
 
 import s from './board.module.scss';
-import { numberIndexToAlphanumeric } from '@/utils/numberIndexToAlphanumeric';
+import { numberIndexToAlphanumeric } from '@/utils/convertIndex';
 import { Ship, Shot } from '@/components/atoms';
 import { BoardType, PositionType } from '@/types';
 
