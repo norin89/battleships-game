@@ -1,35 +1,41 @@
+@use 'sass:map';
 @use 'sass:color';
-$max-width: 320px;
+@use '../../../styles/vars';
 
+$max-width: 320px;
 $validation-status-colors: (
 	'error': (
-		background: #f6a6a6,
+		background: #ffbebe,
 		color: color.mix(#f6a6a6, #000, 30%),
 	),
 	'warning': (
-		background: #f8c277,
-		color: color.mix(#f8c277, #000, 30%),
+		background: #ffe7b4,
+		color: color.mix(#efcda8, #000, 30%),
 	),
 	'success': (
-		background: #87d687,
-		color: color.mix(#87d687, #000, 30%),
+		background: #b9edb9,
+		color: color.mix(#ace8ac, #000, 30%),
 	),
 	'info': (
-		background: #a0d8f1,
-		color: color.mix(#a0d8f1, #000, 30%),
+		background: #aadbed,
+		color: color.mix(#aadbed, #000, 30%),
 	),
 );
+$default-status: 'info';
 
 .notification {
 	position: relative;
 	box-sizing: border-box;
 	display: block;
-	min-width: min-content;
 	max-width: $max-width;
+	min-width: min-content;
 	padding: 20px;
-	background: #ebebeb;
-	color: #222;
+	box-shadow: vars.$box-shadow-default;
 	text-align: center;
+
+	@each $property, $value in map.get($validation-status-colors, $default-status) {
+		#{$property}: $value;
+	}
 
 	&__close {
 		position: absolute;
@@ -41,7 +47,7 @@ $validation-status-colors: (
 		font-size: 20px;
 		line-height: 1;
 		opacity: 0.5;
-		transition: opacity 0.5s;
+		transition: opacity 0.3s;
 		cursor: pointer;
 		appearance: none;
 
@@ -52,9 +58,11 @@ $validation-status-colors: (
 	}
 
 	@each $status, $props in $validation-status-colors {
-		&--status-#{$status} {
-			@each $property, $value in $props {
-				#{$property}: $value;
+		@if ($status != $default-status) {
+			&--status-#{$status} {
+				@each $property, $value in $props {
+					#{$property}: $value;
+				}
 			}
 		}
 	}

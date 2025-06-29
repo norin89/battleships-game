@@ -1,0 +1,9 @@
+@use '../../../styles/vars';
+
+.stats {
+	display: flex;
+	gap: 20px 40px;
+	flex-flow: row wrap;
+	justify-content: center;
+	text-align: center;
+}

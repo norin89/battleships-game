@@ -8,9 +8,7 @@ type generateShipPositionsProps = {
 };
 
 /** Generate random ship positions based on board settings from `settings.json` */
-export const generateShipPositions = ({
-	shipSizes,
-}: generateShipPositionsProps): BoardType['ships'] =>
+export const generateShipPositions = ({ shipSizes }: generateShipPositionsProps): BoardType['ships'] =>
 	shipSizes.reduce((result: BoardType['ships'], size) => {
 		return [...result, findPositionForShip({ size, ships: result })];
 	}, []);

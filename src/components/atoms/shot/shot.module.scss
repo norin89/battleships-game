@@ -1,17 +1,23 @@
+@use 'sass:color';
+@use '../../../styles/vars';
+
+$status-colors: (
+	'hit': #df5151,
+	'miss': #b2d1ea,
+);
+
 .shot {
 	$root: &;
 	display: inline-block;
-	vertical-align: text-top;
+	vertical-align: baseline;
 	min-height: 1em;
 	min-width: 1em;
 	border-radius: 50%;
-	background: #ccc;
+	box-shadow: vars.$box-shadow-default;
 
-	&--hit {
-		background: #df5151;
-	}
-
-	&--miss {
-		background: #6bc6e3;
+	@each $status, $color in $status-colors {
+		&--#{$status} {
+			background: radial-gradient($color, color.adjust($color, $lightness: -10%));
+		}
 	}
 }

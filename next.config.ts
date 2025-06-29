@@ -7,9 +7,7 @@ const createSassVariables = (data: object, prefix = ''): string =>
 		.reduce(
 			(result: string[], [key, value]) => [
 				...result,
-				typeof value === 'object'
-					? createSassVariables(value, `${key}-`)
-					: `$${prefix}${key}: ${value};`,
+				typeof value === 'object' ? createSassVariables(value, `${key}-`) : `$${prefix}${key}: ${value};`,
 			],
 			[],
 		)

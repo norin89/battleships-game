@@ -103,8 +103,12 @@ export const WithNotification: Story = {
 		...Combined.args,
 		notifications: [
 			{
-				message: 'Invalid position!',
-				status: 'error',
+				message: (
+					<>
+						Invalid position "<strong>fz12j</strong>"!
+					</>
+				),
+				status: 'warning',
 			},
 		],
 	},

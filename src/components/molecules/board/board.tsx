@@ -24,7 +24,16 @@ export const Board = ({
 	const renderedBoardSize = size + 1; // +1 for the row and column header
 
 	return (
-		<div className={cx(s['board'], className)} {...props}>
+		<div
+			className={cx(
+				s['board'],
+				{
+					[s['-is-disabled']]: notifications.length > 0,
+				},
+				className,
+			)}
+			{...props}
+		>
 			<div className={s['board__canvas']}>
 				<div className={cx(s['board__layer'], s['board__layer--base'])}>
 					{Array.from(Array(renderedBoardSize), (_row, rowIdx) => (
@@ -73,11 +82,9 @@ export const Board = ({
 								style={{
 									// +1 because of headers
 									gridColumnStart: position.column + 1,
-									gridColumnEnd:
-										ship.orientation === 'horizontal' ? ship.size + position.column + 1 : undefined,
+									gridColumnEnd: ship.orientation === 'horizontal' ? ship.size + position.column + 1 : undefined,
 									gridRowStart: ship.position.row + 1,
-									gridRowEnd:
-										ship.orientation === 'vertical' ? ship.size + ship.position.row + 1 : undefined,
+									gridRowEnd: ship.orientation === 'vertical' ? ship.size + ship.position.row + 1 : undefined,
 								}}
 								key={idx}
 							/>

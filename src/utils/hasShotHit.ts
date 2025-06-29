@@ -2,13 +2,7 @@ import { BoardType, PositionType } from '@/types';
 import { getShipFieldPositions } from '@/utils/getShipFieldPositions';
 
 /** Checks if a `shot` is a `hit` or a `miss` */
-export const hasShotHit = ({
-	position,
-	ships,
-}: {
-	position: PositionType;
-	ships: BoardType['ships'];
-}): boolean => {
+export const hasShotHit = ({ position, ships }: { position: PositionType; ships: BoardType['ships'] }): boolean => {
 	let isHit = false;
 
 	ships.forEach((placedShip) => {

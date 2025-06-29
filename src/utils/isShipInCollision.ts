@@ -21,25 +21,16 @@ export const isShipInCollision = ({
 			newShipFieldPositions.forEach((newPosition) => {
 				// todo: expand `ship` field positions instead of this mess
 				if (
-					(placedPosition.row === newPosition.row &&
-						placedPosition.column === newPosition.column) ||
+					(placedPosition.row === newPosition.row && placedPosition.column === newPosition.column) ||
 					// Make sure there's a gap between ships
-					(placedPosition.row - 1 === newPosition.row &&
-						placedPosition.column - 1 === newPosition.column) ||
-					(placedPosition.row + 1 === newPosition.row &&
-						placedPosition.column + 1 === newPosition.column) ||
-					(placedPosition.row - 1 === newPosition.row &&
-						placedPosition.column + 1 === newPosition.column) ||
-					(placedPosition.row + 1 === newPosition.row &&
-						placedPosition.column - 1 === newPosition.column) ||
-					(placedPosition.row + 1 === newPosition.row &&
-						placedPosition.column === newPosition.column) ||
-					(placedPosition.row - 1 === newPosition.row &&
-						placedPosition.column === newPosition.column) ||
-					(placedPosition.row === newPosition.row &&
-						placedPosition.column + 1 === newPosition.column) ||
-					(placedPosition.row === newPosition.row &&
-						placedPosition.column - 1 === newPosition.column)
+					(placedPosition.row - 1 === newPosition.row && placedPosition.column - 1 === newPosition.column) ||
+					(placedPosition.row + 1 === newPosition.row && placedPosition.column + 1 === newPosition.column) ||
+					(placedPosition.row - 1 === newPosition.row && placedPosition.column + 1 === newPosition.column) ||
+					(placedPosition.row + 1 === newPosition.row && placedPosition.column - 1 === newPosition.column) ||
+					(placedPosition.row + 1 === newPosition.row && placedPosition.column === newPosition.column) ||
+					(placedPosition.row - 1 === newPosition.row && placedPosition.column === newPosition.column) ||
+					(placedPosition.row === newPosition.row && placedPosition.column + 1 === newPosition.column) ||
+					(placedPosition.row === newPosition.row && placedPosition.column - 1 === newPosition.column)
 				) {
 					hasCollision = true;
 				}

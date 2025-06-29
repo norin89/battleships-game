@@ -19,9 +19,7 @@ export const updateShipsAfterHit = ({
 					ship.isSunk ||
 					shipFieldPositions.every((shipPosition) =>
 						shots?.some(
-							(shot) =>
-								shot.position.row === shipPosition.row &&
-								shot.position.column === shipPosition.column,
+							(shot) => shot.position.row === shipPosition.row && shot.position.column === shipPosition.column,
 						),
 					),
 			},

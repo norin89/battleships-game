@@ -11,13 +11,7 @@ export type NotificationProps = {
 } & HTMLAttributes<HTMLDivElement>;
 
 /** Battleships game board */
-export const Notification = ({
-	children,
-	status = 'info',
-	onClose,
-	className,
-	...props
-}: NotificationProps) => (
+export const Notification = ({ children, status = 'info', onClose, className, ...props }: NotificationProps) => (
 	<div
 		className={cx(
 			s['notification'],

@@ -40,6 +40,14 @@ export const Sunk: Story = {
 	},
 };
 
+export const WithSize: Story = {
+	args: {
+		size: 4,
+		orientation: 'horizontal',
+		showSize: true,
+	},
+};
+
 export const Size4: Story = {
 	args: {
 		size: 4,

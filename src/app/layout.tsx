@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 
+import '@/styles/base.scss';
+
 export const metadata: Metadata = {
 	title: 'Battleships Game',
 	description: 'Battleships game built with Next.js and TypeScript',

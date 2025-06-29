@@ -1,4 +1,5 @@
 @use 'sass:math';
+@use '../../../styles/vars';
 
 // defaults for values from `settings.json`
 $ship-size-min: 1 !default;
@@ -10,16 +11,29 @@ $scale-factor: 0.9;
 .ship {
 	$root: &;
 	display: inline-flex;
-	vertical-align: middle;
-	align-items: center;
+	vertical-align: baseline;
 	justify-content: center;
+	align-items: center;
 	min-height: $base-size;
 	min-width: $base-size;
-	background: #bfb7b7;
-	border-radius: 25%;
+	border-radius: $base-size * 1.5;
+	background: #89a1a1;
+	box-shadow: vars.$box-shadow-default;
+	color: #fff;
+
+	&::before {
+		display: none;
+	}
 
 	&.-is-sunk {
-		background: #ed8b8b;
+		background: #ed8d8d;
+		opacity: 0.75;
+	}
+
+	&--show-size {
+		&::before {
+			display: initial;
+		}
 	}
 
 	@for $size from $ship-size-min through $ship-size-max {
@@ -27,8 +41,9 @@ $scale-factor: 0.9;
 		&--size-#{$size} {
 			&::before {
 				content: '#{$size}';
-				color: rgba(#fff, 0.5);
-				font-size: 0.75em;
+				font-size: 1em;
+				font-weight: 700;
+				opacity: 0.667;
 			}
 
 			&#{$root}--horizontal {

@@ -1,11 +1,7 @@
 import { BoardType, PositionType } from '@/types';
 
 /** Returns array of positions of each `ship` field based on its `size` and `orientation` */
-export const getShipFieldPositions = ({
-	ship,
-}: {
-	ship: BoardType['ships'][number];
-}): PositionType[] =>
+export const getShipFieldPositions = ({ ship }: { ship: BoardType['ships'][number] }): PositionType[] =>
 	[...Array(ship.size)].reduce((result, _, idx) => {
 		return [
 			...result,

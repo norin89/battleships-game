@@ -9,18 +9,13 @@ import { updateShipsAfterHit } from '@/utils/updateShipsAfterHit';
 import { alphanumericIndexToNumber } from '@/utils/convertIndex';
 import { checkAllShipsSunk } from '@/utils/checkAllShipsSunk';
 import { isPositionValid } from '@/utils/isPositionValid';
-import { Stats } from '@/templates/Stats';
+import { Stats } from '@/parts/Stats';
 import { Board } from '@/components/molecules';
+import { Button, Input } from '@/components/atoms';
 
 const NOTIFICATIONS_TIMER = 2500; // 2.5 seconds
 
-export const Game = ({
-	boardSize,
-	ships: boardShips,
-}: {
-	boardSize: BoardType['size'];
-	ships: BoardType['ships'];
-}) => {
+export const Game = ({ boardSize, ships: boardShips }: { boardSize: BoardType['size']; ships: BoardType['ships'] }) => {
 	const router = useRouter();
 
 	// todo: use Redux or other tool for better state management
@@ -35,9 +30,7 @@ export const Game = ({
 	const disabledInput = hasNotifications || allShipsSunk;
 
 	const handleShot = (position: PositionType) => {
-		const isAlreadyShot = shots?.find(
-			(s) => s.position.column === position.column && s.position.row === position.row,
-		);
+		const isAlreadyShot = shots?.find((s) => s.position.column === position.column && s.position.row === position.row);
 
 		if (isAlreadyShot) {
 			// eslint-disable-next-line no-console
@@ -78,7 +71,7 @@ export const Game = ({
 							Use correct format, e.g. <strong>F7</strong>.
 						</>
 					),
-					status: 'error',
+					status: 'warning',
 				},
 			]);
 
@@ -115,7 +108,7 @@ export const Game = ({
 			<Stats ships={ships} shots={shots} />
 			<Board
 				style={{
-					width: '60vh',
+					width: '50vh',
 					maxWidth: '100%',
 					minWidth: 280,
 				}}
@@ -130,13 +123,22 @@ export const Game = ({
 								{
 									message: (
 										<>
-											<strong>Congratulations!</strong> All ships are sunk!
+											<strong>Congratulations,</strong>
+											<br />
+											all ships are sunk!
 											<br />
 											<br />
 											Total shots: <strong>{(shots || []).length}</strong>
 											<br />
 											<br />
-											You can restart the game.
+											<Button
+												type="button"
+												onClick={() => {
+													router.refresh();
+												}}
+											>
+												Play again!
+											</Button>
 										</>
 									),
 									status: 'success',
@@ -176,7 +178,7 @@ export const Game = ({
 					handleShot(position);
 				}}
 			>
-				<input
+				<Input
 					type="text"
 					value={input}
 					onChange={(e) => {
@@ -187,18 +189,18 @@ export const Game = ({
 					readOnly={disabledInput}
 					placeholder="e.g. E3"
 				/>
-				<button type="submit" disabled={disabledInput}>
+				<Button type="submit" disabled={disabledInput} variant="primary">
 					Hit!
-				</button>
+				</Button>
 				&nbsp;&nbsp;&nbsp;&nbsp;
-				<button
+				<Button
 					type="button"
 					onClick={() => {
 						router.refresh();
 					}}
 				>
 					Restart game
-				</button>
+				</Button>
 			</form>
 		</>
 	);

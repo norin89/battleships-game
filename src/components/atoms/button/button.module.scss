@@ -1,0 +1,51 @@
+@use 'sass:map';
+@use 'sass:color';
+
+$variants: (
+	'primary': (
+		background: #368065,
+		color: #fff,
+		border-color: transparent,
+	),
+	'secondary': (
+		background: transparent,
+		color: inherit,
+		border-color: currentColor,
+	)
+);
+$default-variant: 'secondary';
+
+@mixin button-variant($properties) {
+	@each $property, $value in $properties {
+		#{$property}: $value;
+
+		&:hover,
+		&:focus {
+			@if ($property == 'background') {
+				@if ($value == transparent) {
+					opacity: .6;
+				} @else {
+					background: color.adjust($value, $lightness: 5%);
+					opacity: 1;
+				}
+			}
+		}
+	}
+}
+
+.button {
+	padding: .5em 1em;
+	border: 1px solid transparent;
+	font: inherit;
+	transition: all 0.3s;
+	cursor: pointer;
+	@include button-variant(map.get($variants, $default-variant));
+
+	@each $variant, $props in $variants {
+		@if ($variant != $default-variant) {
+			&--#{$variant} {
+				@include button-variant($props);
+			}
+		}
+	}
+}
