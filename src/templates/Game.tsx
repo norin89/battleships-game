@@ -3,12 +3,13 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
-import { Board } from '@/components/molecules';
 import { BoardType, PositionType } from '@/types';
 import { hasShotHit } from '@/utils/hasShotHit';
 import { updateShipsAfterHit } from '@/utils/updateShipsAfterHit';
 import { alphanumericIndexToNumber } from '@/utils/convertIndex';
 import { checkAllShipsSunk } from '@/utils/checkAllShipsSunk';
+import { isPositionValid } from '@/utils/isPositionValid';
+import { Board } from '@/components/molecules';
 
 const NOTIFICATIONS_TIMER = 2500; // 2.5 seconds
 
@@ -146,10 +147,12 @@ export const Game = ({
 				onSubmit={(e) => {
 					e.preventDefault();
 
+					// todo: separate below logic to an utility function
 					const firstNumberIndex = input.search(/[0-9]/);
 					const inputColumn = input.slice(0, firstNumberIndex).toLowerCase();
 					const inputRow = input.slice(firstNumberIndex);
 
+					// TODO: we could make sure input is valid with regex `pattern` before submitting
 					if (!inputColumn || !inputRow || !/^[0-9]+$/.test(inputRow)) {
 						handlePositionError(input);
 						return;
@@ -160,14 +163,7 @@ export const Game = ({
 						row: parseInt(inputRow),
 					};
 
-					if (
-						isNaN(position.column) ||
-						isNaN(position.row) ||
-						position.column < 1 ||
-						position.row < 1 ||
-						position.column > boardSize ||
-						position.row > boardSize
-					) {
+					if (!isPositionValid(position)) {
 						handlePositionError(input);
 						return;
 					}
