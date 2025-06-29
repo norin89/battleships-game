@@ -3,7 +3,7 @@ import settings from '@/settings.json';
 import { getRandomInteger } from '@/utils/getRandomInteger';
 import { isShipInCollision } from '@/utils/isShipInCollision';
 
-type generateShipPositionsProps = {
+export type generateShipPositionsProps = {
 	shipSizes: Array<ShipType['size']>;
 };
 

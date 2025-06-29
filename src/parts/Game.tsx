@@ -12,14 +12,21 @@ import { isPositionValid } from '@/utils/isPositionValid';
 import { Stats } from '@/parts/Stats';
 import { Board } from '@/components/molecules';
 import { Button, Input } from '@/components/atoms';
+import { generateShipPositions, generateShipPositionsProps } from '@/utils/generateShipPositions';
 
 const NOTIFICATIONS_TIMER = 2500; // 2.5 seconds
 
-export const Game = ({ boardSize, ships: boardShips }: { boardSize: BoardType['size']; ships: BoardType['ships'] }) => {
+export const Game = ({
+	boardSize,
+	shipSizes,
+}: {
+	boardSize: BoardType['size'];
+	shipSizes: generateShipPositionsProps['shipSizes'];
+}) => {
 	const router = useRouter();
 
 	// todo: use Redux or other tool for better state management
-	const [ships, setShips] = useState<BoardType['ships']>(boardShips);
+	const [ships, setShips] = useState<BoardType['ships']>(generateShipPositions({ shipSizes }));
 	const [shots, setShots] = useState<BoardType['shots']>([]);
 	const [input, setInput] = useState<string>('');
 	const [notifications, setNotifications] = useState<BoardType['notifications'] | null>(null);
@@ -43,8 +50,8 @@ export const Game = ({ boardSize, ships: boardShips }: { boardSize: BoardType['s
 		setInput('');
 	};
 
-	const resetGame = (newShips: BoardType['ships']) => {
-		setShips(newShips);
+	const resetGame = (newShipSizes: generateShipPositionsProps['shipSizes']) => {
+		setShips(generateShipPositions({ shipSizes: newShipSizes }));
 		setShots([]);
 		setInput('');
 		setNotifications([]);
@@ -88,8 +95,8 @@ export const Game = ({ boardSize, ships: boardShips }: { boardSize: BoardType['s
 
 	// Reset state when ships change
 	useEffect(() => {
-		resetGame(boardShips);
-	}, [boardShips]);
+		resetGame(shipSizes);
+	}, [shipSizes]);
 
 	// todo: consider optimization - both below useEffects could be ran only after a hit
 
