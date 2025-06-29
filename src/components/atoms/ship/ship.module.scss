@@ -4,15 +4,17 @@
 $ship-size-min: 1 !default;
 $ship-size-max: 5 !default;
 
+$base-size: 1.5em;
 $scale-factor: 0.9;
 
 .ship {
 	$root: &;
 	display: inline-flex;
+	vertical-align: middle;
 	align-items: center;
 	justify-content: center;
-	min-height: 1em;
-	min-width: 1em;
+	min-height: $base-size;
+	min-width: $base-size;
 	background: #bfb7b7;
 	border-radius: 25%;
 
@@ -30,12 +32,12 @@ $scale-factor: 0.9;
 			}
 
 			&#{$root}--horizontal {
-				min-width: $size * 1em;
+				min-width: $size * $base-size;
 				transform: scale(1 - (math.div(1 - $scale-factor, $size)), $scale-factor);
 			}
 
 			&#{$root}--vertical {
-				min-height: $size * 1em;
+				min-height: $size * $base-size;
 				transform: scale($scale-factor, 1 - (math.div(1 - $scale-factor, $size)));
 			}
 		}

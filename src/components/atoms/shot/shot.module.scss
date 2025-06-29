@@ -1,6 +1,7 @@
 .shot {
 	$root: &;
 	display: inline-block;
+	vertical-align: text-top;
 	min-height: 1em;
 	min-width: 1em;
 	border-radius: 50%;

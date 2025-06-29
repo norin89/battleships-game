@@ -9,6 +9,7 @@ import { updateShipsAfterHit } from '@/utils/updateShipsAfterHit';
 import { alphanumericIndexToNumber } from '@/utils/convertIndex';
 import { checkAllShipsSunk } from '@/utils/checkAllShipsSunk';
 import { isPositionValid } from '@/utils/isPositionValid';
+import { Stats } from '@/templates/Stats';
 import { Board } from '@/components/molecules';
 
 const NOTIFICATIONS_TIMER = 2500; // 2.5 seconds
@@ -111,6 +112,7 @@ export const Game = ({
 
 	return (
 		<>
+			<Stats ships={ships} shots={shots} />
 			<Board
 				style={{
 					width: '60vh',
@@ -129,6 +131,9 @@ export const Game = ({
 									message: (
 										<>
 											<strong>Congratulations!</strong> All ships are sunk!
+											<br />
+											<br />
+											Total shots: <strong>{(shots || []).length}</strong>
 											<br />
 											<br />
 											You can restart the game.
