@@ -20,14 +20,20 @@ export default function Home() {
 			<main
 				style={{
 					display: 'flex',
+					boxSizing: 'border-box',
 					minHeight: '100svh',
 					flexDirection: 'column',
 					alignItems: 'center',
 					justifyContent: 'center',
-					gap: '2em',
+					gap: 20,
+					paddingInline: 20,
 				}}
 			>
-				<h1>Welcome to the Battleships Game!</h1>
+				<h1 style={{ margin: 0 }}>Welcome to the Battleships Game!</h1>
+				<p>
+					Input your shots in the format <code>A1</code>, <code>B2</code>, etc. or click on the
+					board to shoot.
+				</p>
 				<Game boardSize={BOARD_SIZE} ships={generateShipPositions({ shipSizes: SHIP_SIZES })} />
 			</main>
 		</>

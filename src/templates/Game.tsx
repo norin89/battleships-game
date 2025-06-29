@@ -37,11 +37,17 @@ export const Game = ({
 
 		const isHit = hasShotHit({ position, ships });
 		setShots((prevShots) => [...(prevShots || []), { status: isHit ? 'hit' : 'miss', position }]);
+		setInput('');
 	};
 
 	const resetGame = (newShips: BoardType['ships']) => {
 		setShips(newShips);
 		setShots([]);
+	};
+
+	const showPositionError = () => {
+		// eslint-disable-next-line no-console
+		console.warn('Invalid position.');
 	};
 
 	// Reset state when ships change
@@ -57,7 +63,11 @@ export const Game = ({
 	return (
 		<>
 			<Board
-				style={{ width: '60vh', maxWidth: '100%', minWidth: 300 }}
+				style={{
+					width: '60vh',
+					maxWidth: '100%',
+					minWidth: 280,
+				}}
 				size={boardSize}
 				// Hide ships until sunk
 				ships={ships.filter((ship) => ship.isSunk)}
@@ -69,6 +79,34 @@ export const Game = ({
 			<form
 				onSubmit={(e) => {
 					e.preventDefault();
+
+					const firstNumberIndex = input.search(/[0-9]/);
+					const inputColumn = input.slice(0, firstNumberIndex).toLowerCase();
+					const inputRow = input.slice(firstNumberIndex);
+
+					if (!inputColumn || !inputRow || !/^[0-9]+$/.test(inputRow)) {
+						showPositionError();
+						return;
+					}
+
+					const position: PositionType = {
+						column: alphanumericIndexToNumber(inputColumn) + 1, // +1 as first column is header
+						row: parseInt(inputRow),
+					};
+
+					if (
+						isNaN(position.column) ||
+						isNaN(position.row) ||
+						position.column < 1 ||
+						position.row < 1 ||
+						position.column > boardSize ||
+						position.row > boardSize
+					) {
+						showPositionError();
+						return;
+					}
+
+					handleShot(position);
 				}}
 			>
 				{/* todo: decode to `PositionType` and fire shot on submit */}
@@ -78,32 +116,19 @@ export const Game = ({
 					onChange={(e) => {
 						// Clean-up input value
 						const value = e.target.value.trim();
-
 						setInput(value);
-
-						if (!value) {
-							return;
-						}
-
-						const position: PositionType = {
-							column: alphanumericIndexToNumber(value.toLowerCase()),
-							row: 0,
-						};
-
-						// eslint-disable-next-line no-console
-						console.log(position);
 					}}
 					placeholder="e.g. E3"
 				/>
 				<button type="submit">Hit!</button>
-				&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;
 				<button
 					type="button"
 					onClick={() => {
 						router.refresh();
 					}}
 				>
-					New game
+					Restart game
 				</button>
 			</form>
 		</>
