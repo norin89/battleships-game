@@ -36,31 +36,32 @@ Game settings are stored in `src/settings.json`.
 
 ## Game requirements
 
+### MVP
+
 - [x] a grid of cells (10x10)
-- [ ] the app places ships randomly
+  - [x] displayed on the grid: hits, misses, sunk ships
+- [x] the app places ships randomly
   - [x] ships are of different sizes (1x 5-cells, 2x 4-cells)
-- [ ] player can select a cell to attack
-  - [ ] by text input (e.g. "C3")
-  - [ ] by clicking on a cell in the grid
-  - [ ] the cell can be selected only once
-- [ ] results
-  - [ ] displayed on the grid: hits, misses, sunk ships
-  - [ ] info about left ships
-- [ ] the game ends when all ships are sunk
-  - [ ] there should be some message when the game ends
-  - [ ] button to restart the game
-- [ ] game instructions
+- [x] player can select a cell to attack
+  - [x] by text input (e.g. "C3")
+  - [x] by clicking on a cell in the grid
+  - [x] the cell can be selected only once
+- [x] the game ends when all ships are sunk
+  - [x] there should be some message when the game ends
+  - [x] button to restart the game
+- [x] game instructions
 
 ### Possible enhancements
 
+- [ ] display game stats
+  - [ ] number of shots
+  - [ ] info about left ships
+  - [ ] store and display the top score
 - [ ] difficulty levels with different ship count and sizes
 - [ ] computer opponent
   - [ ] computer places the ships randomly
-  - [ ] computer selects cells to attack randomly
-    - [ ] some logic to select the next cell to attack
-- [ ] count and display the number of hits and misses
-  - [ ] store the top score
-  - [ ] display the top score
+  - [ ] computer selects cells to attack randomly or with some strategy
+  - [ ] AI opponent
 - [ ] online multiplayer
 
 ---
