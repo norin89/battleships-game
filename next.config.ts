@@ -14,6 +14,9 @@ const createSassVariables = (data: object, prefix = ''): string =>
 		.join('\n')}`;
 
 const nextConfig: NextConfig = {
+	compiler: {
+		removeConsole: process.env.NODE_ENV === 'production' ? { exclude: ['error'] } : false,
+	},
 	sassOptions: {
 		implementation: 'sass',
 		additionalData: createSassVariables(settings),
