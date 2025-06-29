@@ -30,6 +30,13 @@ const eslintConfig = [
 			'jsx-a11y/role-has-required-aria-props': 'warn',
 			'jsx-a11y/role-supports-aria-props': 'warn',
 			'prettier/prettier': 'warn',
+			'no-restricted-imports': [
+				'error',
+				{
+					name: 'next/router',
+					message: 'Use `next/navigation` instead.',
+				},
+			],
 		},
 		overrides: [
 			{
