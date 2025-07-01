@@ -25,20 +25,20 @@ export const numberIndexToAlphanumeric = (idx: number): string => {
  * Return number index corresponding to a given alphanumeric index (e.g., 'a' -> 0, 'b' -> 1, ..., 'z' -> 25).
  * Opposite to `numberIndexToAlphanumeric()`.
  **/
-export const alphanumericIndexToNumber = (alphanumericIndex: string): number => {
-	if (!new RegExp(`^[${LETTERS}]+$`).test(alphanumericIndex)) {
+export const alphanumericIndexToNumber = (alphanumericIdx: string): number => {
+	if (!new RegExp(`^[${LETTERS}]+$`).test(alphanumericIdx)) {
 		throw new Error(
-			`Invalid index - "${alphanumericIndex}". Alphanumeric index must only contain lowercase letters - '${LETTERS}'.`,
+			`Invalid index - "${alphanumericIdx}". Alphanumeric index must only contain lowercase letters - '${LETTERS}'.`,
 		);
 	}
 
-	// Reverse values for easier calculations
-	const alphanumericIndexArray = [...alphanumericIndex].reverse();
+	// // Reverse values for easier calculations
+	const alphanumericIdxArray = [...alphanumericIdx].reverse();
 
-	// todo: refactor as it fails for larger values!
-	return alphanumericIndexArray.reduce((result, letter, idx) => {
+	return alphanumericIdxArray.reduce((result, letter, idx) => {
 		const letterIndex = LETTERS.indexOf(letter);
-		const letterValue = idx ? idx * (letterIndex + 1) * LETTERS.length : letterIndex;
+		// If last letter return its value else calculate value based on its position
+		const letterValue = idx ? Math.pow(LETTERS.length, idx) * (letterIndex + 1) : letterIndex;
 		return result + letterValue;
 	}, 0);
 };
