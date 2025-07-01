@@ -16,6 +16,7 @@ export const Button = ({ variant = DEFAULT_VARIANT, className, ...props }: Butto
 				s['button'],
 				{
 					[s[`button--${variant}`]]: variant !== DEFAULT_VARIANT,
+					[s[`-is-disabled`]]: props.disabled,
 				},
 				className,
 			)}

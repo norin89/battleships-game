@@ -3,9 +3,9 @@
 
 $variants: (
 	'primary': (
-		background: #368065,
+		background: #329170,
 		color: #fff,
-		border-color: transparent,
+		border-color: color.adjust(#21a5ba, $lightness: -33.333%),
 	),
 	'secondary': (
 		background: transparent,
@@ -19,14 +19,16 @@ $default-variant: 'secondary';
 	@each $property, $value in $properties {
 		#{$property}: $value;
 
-		&:hover,
-		&:focus {
-			@if ($property == 'background') {
-				@if ($value == transparent) {
-					opacity: .6;
-				} @else {
-					background: color.adjust($value, $lightness: 5%);
-					opacity: 1;
+		&:not(.-is-disabled) {
+			&:hover,
+			&:focus {
+				@if ($property == 'background') {
+					@if ($value == transparent) {
+						opacity: .6;
+					} @else {
+						background: color.adjust($value, $lightness: 5%);
+						opacity: 1;
+					}
 				}
 			}
 		}
@@ -47,5 +49,10 @@ $default-variant: 'secondary';
 				@include button-variant($props);
 			}
 		}
+	}
+
+	&.-is-disabled {
+		opacity: 0.5;
+		cursor: not-allowed;
 	}
 }
